@@ -27,6 +27,20 @@ void callback_execute( event_t event )
 {
 	for(int count = 0; count < callback[event].count; count++)
 	{
-		callback[event].cb[count](NULL);
+		if(callback[event].cb[count])
+		{
+			callback[event].cb[count](NULL);
+		}		
 	}	
+}
+
+void callback_unregister( event_t event, callback_t cb_fn )
+{
+	for(int count=0; count<callback[event].count; count++)
+	{
+		if(callback[event].cb[count] == cb_fn)
+		{
+			callback[event].cb[count] = NULL;
+		}
+	}
 }

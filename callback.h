@@ -25,7 +25,8 @@ typedef struct {
 } callback_s;
 
 extern callback_s callback[EVENT_MAX];	/* save the register info of every single callback function */
-extern void callback_register( event_t event, callback_t cb_fn );	/* callback register API */
+extern void callback_register( event_t event, callback_t cb_fn );	/* callback register */
 extern void callback_execute( event_t event );						/* callback execute for every single event */
+extern void callback_unregister( event_t event, callback_t cb_fn ); /* callback unregister */
 
 #endif

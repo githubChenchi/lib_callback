@@ -105,9 +105,23 @@ int main(void)
 	callback_register(EVENT_2, callback_event2_2);
 
 	callback_register(EVENT_3, callback_event3_1);
+	callback_register(EVENT_3, NULL);
 
 	callback_register(10, callback_event10_1);
 	callback_register(10, callback_event10_2);
+
+	for(event_t event = EVENT_0; event < EVENT_MAX; event++)
+	{
+		callback_execute(event);
+	}
+
+	printf("\r\n ######## unregister ! \r\n");
+
+	callback_unregister(EVENT_2, callback_event2_1);
+	printf("callback_event2_1 unregister \r\n");
+
+	callback_unregister(EVENT_2, callback_event2_2);
+	printf("callback_event2_2 unregister \r\n");
 
 	for(event_t event = EVENT_0; event < EVENT_MAX; event++)
 	{

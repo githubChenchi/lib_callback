@@ -54,22 +54,33 @@
 
 ## 3. API  
 
-### &emsp;&emsp;3.1 `extern void callback_register( event_t event, callback_t cb_fn )`  
+### &emsp;&emsp;3.1 `void callback_register( event_t event, callback_t cb_fn )`  
 
 #### &emsp;&emsp;参数  
 
 		event : 事件  
-		cb_fn : 传递回调函数入口  
+		cb_fn : 传递待注册的回调函数入口  
 
 #### &emsp;&emsp;返回值  
 
 		无  
 
-### &emsp;&emsp;3.2 `extern void callback_execute( event_t event )`  
+### &emsp;&emsp;3.2 `void callback_execute( event_t event )`  
 
 #### &emsp;&emsp;参数  
 	
 		event : 事件  
+
+#### &emsp;&emsp;返回值  
+
+		无  
+
+### &emsp;&emsp;3.2 `void callback_unregister( event_t event, callback_t cb_fn )`  
+
+#### &emsp;&emsp;参数  
+
+		event : 事件  
+		cb_fn : 传递待删除的回调函数入口  
 
 #### &emsp;&emsp;返回值  
 
