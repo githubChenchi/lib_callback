@@ -117,11 +117,17 @@ int main(void)
 
 	printf("\r\n ######## unregister ! \r\n");
 
-	callback_unregister(EVENT_2, callback_event2_1);
-	printf("callback_event2_1 unregister \r\n");
+	printf("callback_event1_2 unregister \r\n");
+	callback_unregister(EVENT_1, callback_event1_2);
 
-	callback_unregister(EVENT_2, callback_event2_2);
+	printf("callback_event1_5 unregister \r\n");
+	callback_unregister(EVENT_1, callback_event1_5);
+
+	printf("callback_event2_1 unregister \r\n");
+	callback_unregister(EVENT_2, callback_event2_1);
+	
 	printf("callback_event2_2 unregister \r\n");
+	callback_unregister(EVENT_2, callback_event2_2);	
 
 	for(event_t event = EVENT_0; event < EVENT_MAX; event++)
 	{
