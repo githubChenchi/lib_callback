@@ -40,26 +40,50 @@ void callback_execute( event_t event )
 {
 	int count = 0;
 
-	for(count=0; count<REGISTER_NUM_MAX; count++)
+	if(event >= EVENT_0 && event < EVENT_MAX)		
 	{
-		if(callback[event].cb[count])
+		for(count=0; count<REGISTER_NUM_MAX; count++)
 		{
-			callback[event].cb[count](NULL);
-		}	
+			if(callback[event].cb[count])
+			{
+				callback[event].cb[count](NULL);
+			}	
+		}
 	}
+	else
+	{
+		printf("[ERROR] illegal event [%d] \r\n", event);
+	}	
 }
 
 void callback_unregister( event_t event, callback_t cb_fn )
 {
 	int count = 0;
-	for(count=0; count<REGISTER_NUM_MAX; count++)
+	
+	if(event >= EVENT_0 && event < EVENT_MAX)
 	{
-		if(callback[event].cb[count] == cb_fn)
+		for(count=0; count<REGISTER_NUM_MAX; count++)
 		{
-			callback[event].cb[count] = NULL;
-			callback[event].count--;
-			printf("[SUCCESS] event [%d] has been registered [%d] times \r\n", event, callback[event].count);
-			break;
+			if(callback[event].cb[count] == cb_fn && cb_fn)
+			{
+				callback[event].cb[count] = NULL;
+				callback[event].count--;
+				printf("[SUCCESS] event [%d] has been registered [%d] times \r\n", event, callback[event].count);
+				break;
+			}
+			else if(cb_fn == NULL)
+			{
+				printf("[WARNING] the callback function can not be NULL \r\n");
+				break;
+			}
 		}
+		if(count == REGISTER_NUM_MAX)
+		{
+			printf("[WARNING] the callback function is not registered \r\n");
+		}
+	}
+	else
+	{
+		printf("[ERROR] illegal event [%d] \r\n", event);
 	}
 }
